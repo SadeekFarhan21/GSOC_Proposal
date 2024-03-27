@@ -46,19 +46,19 @@ The following are tehe deliverables for this project
 docs
 │
 ├── _static
-│   ├── css              - css file for custom formatting
-│   └── img              - images for the website 
+│   ├── css                     - css file for custom formatting
+│   └── img                     - images for the website 
 │
-├── index.rst            - index of the website created by Sphinx
+├── index.rst                   - index of the website created by Sphinx
 │
 ├── getting_started
-│   ├── package_version  - installation from package version
-│   │   ├── ubuntu.rst   - for ubuntu
-│   │   └── debian.rst   - for debian
-│   └── source           - installation from source
+│   ├── package_version         - installation from package version
+│   │   ├── ubuntu.rst          - for ubuntu
+│   │   └── debian.rst          - for debian
+│   └── source                  - installation from source
 │       └── source.rst
 │
-├── dependencies        - dependencies across different OS
+├── dependencies                - dependencies across different OS
 │   ├── ubuntu.rst
 │   ├── fedora.rst
 │   ├── macOS.rst
