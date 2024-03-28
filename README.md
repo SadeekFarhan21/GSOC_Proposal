@@ -1,19 +1,20 @@
 # P4 Compiler Documentation Site
 
-**Date:** 21st March, 2024  
+**Date:** 2nd April, 2024  
 **Author:** Farhan Sadeek  
-**Affiliation:** Stanford University & The Ohio State University  
+**Academic Affiliation:** Stanford University & The Ohio State University  
+**Professional Affiliation:** Spectrum *(NYSE:CHTR)*\
 **Email:** sadeek.1@osu.edu  
 **Github profile:** [SadeekFarhan21](https://github.com/SadeekFarhan21) \
 **Personal Website**: https://farhan-sadeek.netlify.app/ \
-**Project Length**: 90 hours
-**Mentors**:
+**Project Length**: 90 hours \
+**Mentors**: Davide Scano, Bili Dong, Fabian Ruffy
 
 ## Motivation
 
 Last year, when I was in high school, I got extremely interested in working with Arduino and Raspberry Pi. Together with me and my cousin, a network engineer, built a real-radar system with the microcontroller system. And that embarks the journey of working with embedded systems.
 
-While I was browning through the list of organizations participating in GSoc, I made it my goal because it is one of the closest projects that I could work with. Along with that, I am currently working as a solutions engineer for Spectrum (NYSE:CHTR) and a Computer Science student at the Ohio State University. The first one taught me technical writing and the second gave me the knowledge to understand how computers and electronic devices work. And the best part about the project is that I can start writing anytime I can. Because of all of the above-mentioned reasons, I would like to be part of this program.
+While I was browning through the list of organizations participating in GSoc, I made it my goal because it is one of the closest projects that I could work with. Along with that, I am currently working as a solutions engineer for Spectrum <strong>(NYSE:CHTR)</strong> and a Computer Science student at the Ohio State University. The first one taught me technical writing and the second gave me the knowledge to understand how computers and electronic devices work. And the best part about the project is that I can start writing anytime I can. Because of all of the above-mentioned reasons, I would like to be part of this program.
 
 ## Use case
 
@@ -37,9 +38,9 @@ This project aims to add more well-formatted documentation both on GitHub and a 
 ## Deliverables
 
 
-The following are tehe deliverables for this project
-- A well fromatted documentation website using Sphinx
-- An updated documenation in Github for better understanding of the project
+The following are the deliverables for this project
+- A well-formatted documentation website using Sphinx
+- An updated documentation in Github for a better understanding of the project
 
 ### Directory Structure
 ```
@@ -66,18 +67,18 @@ docs
 │   └── crash_dumps.rst         - details about crash dumps
 │
 ├── development_tools           - developer tools
-│   ├── docker.rst
-│   └── bazel.rst
+│   ├── docker.rst              - for docker
+│   └── bazel.rst               - for bazel
 │
-├── reference.rst
-│
-└── known_issues
-    ├── frontend
+├── reference.rst               - reference for additional information
+│   
+└── known_issues                - known issues inside of the repository
+    ├── frontend                - front end issues
     │   ├── common.rst
     │   ├── p4-14.rst
     │   ├── p4.rst
     │   └── parsers
-    └── backend
+    └── backend                 - backend issues
     │   ├── bmv2.rst
     │   ├── dpdk.rst
     │   ├── ebpf.rst
@@ -89,37 +90,9 @@ docs
         └── specs.rst
 ```      
       
+This is a template of the project that I will work on. However, some of the folder structures can change in the future for example, my mentor may want to create a folder for reference instead of a single reStructuredText file.     
     
-    
 
-
-
-
-### Platform Abstractions
-
-The API will use the unbuffered I/O functions provided by the platform to load files into memory. The methods of performing unbuffered I/O differ between platforms, so this module will abstract the platform specific mechanisms behind an object oriented interface, `FileAccessUnbuffered`.
-
-This will be the only platform specific aspect of the module. I currently have access to windows and linux, and will concentrate on supporting these platforms. The abstraction for linux will use POSIX system calls functions to perform operations such as retrieving file size and reading or writing data to files. This may allow for easy implementation in OS X as well. The windows abstraction will use similar functions for this purpose. The `FileAccessUnbuffered` class will inherit from `FileAccess`, and will provide a template for platform abstractions of unbuffered file IO. This may be extended by providing abstractions for files streamed over the network as well.
-
-### The API Interface
-
-The module will be implemented as a server which will be issued commands through message channels. It will provide the `FileAccessCached` class which will also inherit from `FileAccess`. This class will be used to handle cached files with a specific caching policy, like `KEEP_FOREVER` or `LEAST_RECENTLY_USED_OUT` for example. 
-
-The user (The developer of a game) will not be able to access the file immediately after attempting to load it as the required data will have to be cached first. Instead, the user will have to wait for the file to finish caching and then use it. This may be done by blocking the current thread until the file is cached, by repeatedly polling the file’s state to determine when it is loaded, or by providing a callback function to run once the operation is complete.
-
-### The Cache
-
-The cache is a large memory region which will be addressed using a page table with entries describing pages of a fixed size (4KB). This may be configurable since different architectures use different page sizes. A number of strategies may be used to manage the cache, such as FIFO, FILO and LRU. The user may select a caching policy appropriate to the situation. For example, if a file will be accessed in a strictly sequential manner, FIFO would be a good strategy to use, and would allow the implementation to perform optimisations such as reading ahead. The implementation could also allow for random access by loading pages on demand, though that would be slower and may require some form of synchronisation.
-
-Another idea to be considered is the usage of multiple paged regions, each with a different page size. There could be three separate caches, one comprised of 1KB pages, another with 4KB pages, and yet another with 16KB pages. This allows for more optimisations to be done if the size of data read is more easily managed with pages of a different size. For example, a read whose size is not an exact multiple of 4KB could overflow into the 1KB region and not waste a 4KB page on a few hundred bytes of data. 
-
-The intention is to interact with the cache through instances of the `FileAccessCached` class without exposing the user to the implementation. Statistics about memory usage may be queried from the server singleton. The `FileAcessCached` class will interact with the underlying media using the cache manager as an intermediary. The cache manager is not necessarily an interface to the file system alone and may also be used to cache data from, say, a network stream.
-
-The cache manager will be multithreaded, and will handle multiple files parallelly.
-
-### Integration With Godot Engine
-
-Hooks will have to be attached to the asset loading code to make this happen. Logic must be written to synchronise loading of assets with dependencies as well.
 
 ### Further Possible Improvements 
 
@@ -129,44 +102,81 @@ There are other improvements we could make to the file IO mechanism, which may n
 - Using the cache with network streams.
 - Abstract over archived files and multipart archives.
 
-## Timeline
+## Project Timeline
 
-### Before 6th May:
+This document outlines the project timeline for organizing and documenting the P4 compiler project. The project is divided into 12 weeks, with each week focusing on specific tasks and deliverables.
 
-- Get familiar with the p4c and tutorials code base.
-- Get a good understanding of the problem.
-- Set up the coding environment on a local computer.
-- Familiarize myself with the specific type of writing for this project.
-- Lurk and ask questions on Slack and the issues page.
+### Before:
+- **Tasks:**
+    - Read through different well-formatted documentation to get a better writing style
+    - Get a good understanding of the problem.
+    - Set up the development environment.
+    - Consult with mentors.
+    - Lurk and ask questions on Slack and the issues page.
+- **Deliverables:**
+  - A better understanding of the skills in the documentation 
+  - Initial review of project structure and requirements.
 
-### 6th May – 27th May:
 
-- Interact with mentors.
-- Review/revise the design.
+### Week 1: Familiarization and Setup
+- **Tasks:**
+  - Review project requirements and documentation structure.
+  
+  - Familiarize yourself with p4c documentation tool.
+- **Deliverables:**
+  - Environment set up with Sphinx installed.
+  - Initial review of project structure and requirements.
 
-### 27th May – 2nd June:
+### Week 2: Initial Documentation Organization
+- **Tasks:**
+  - Create a skeleton for the documentation.
+  - Set up a basic structure for index, getting started, dependencies, development tools, reference, and known issues sections.
+- **Deliverables:**
+  - Initial directory structure and empty documentation files.
 
-- Set up skeleton for cache server module.
-- Implement a working custom Godot server to provide the API at runtime.
-- Define all classes with stub methods.
+### Week 3-4: Populate Getting Started and Dependencies Sections
+- **Tasks:**
+  - Populate getting started section with installation instructions.
+  - Fill in details about dependencies for different operating systems.
+- **Deliverables:**
+  - Complete installation guides for both package version and source installations.
+  - Detailed documentation on dependencies for Ubuntu, Fedora, and macOS.
 
-### 2nd June – 20th June:
+### Week 5-6: Development Tools and Reference
+- **Tasks:**
+  - Document developer tools such as Docker and Bazel.
+  - Compile a reference section with additional information.
+- **Deliverables:**
+  - Complete documentation for Docker and Bazel usage.
+  - Initial reference section with relevant details.
 
-- Implement paging of memory in the cache.
-- Implement cache management
+### Week 7-8: Known Issues
+- **Tasks:**
+  - Identify known issues in the repository.
+  - Document frontend and backend issues separately.
+- **Deliverables:**
+  - Detailed documentation of known frontend and backend issues.
+  - Separate section for specifications.
 
-### 10th July – 18th July:
+### Week 9-10: Styling and Formatting
+- **Tasks:**
+  - Add CSS files for custom formatting.
+  - Insert images for enhanced visualization.
+- **Deliverables:**
+  - Styled and visually appealing documentation.
+  - Images embedded where necessary for clarity.
 
-- Interface with file system through `FileAccessUnbuffered`.
-- Implement platform specific subclasses for `FileAccessUnbuffered`.
-- Interface with engine asset import code.
+### Week 11: Review and Revision
+- **Tasks:**
+  - Review the entire documentation for consistency and completeness.
+  - Make necessary revisions and improvements.
+- **Deliverables:**
+  - Finalized version of the documentation ready for deployment.
 
-### 18th July – 22nd July:
-
-- Write documentation.
-- Test & debug.
-
-### 22nd July – 5th August:
-
-- Test all code with unit and integration tests.
-- Fix any remaining bugs.
+### Week 12: Final Touches and Deployment
+- **Tasks:**
+  - Perform final checks and testing.
+  - Prepare documentation for deployment.
+- **Deliverables:**
+  - Deployed and accessible documentation website.
+  - Project completion report summarizing the process.
