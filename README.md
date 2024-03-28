@@ -93,15 +93,6 @@ docs
 This is a template of the project that I will work on. However, some of the folder structures can change in the future for example, my mentor may want to create a folder for reference instead of a single reStructuredText file.     
     
 
-
-### Further Possible Improvements 
-
-There are other improvements we could make to the file IO mechanism, which may not be in the scope of the project but may be taken up later on.
-
-- Using magic streams as detailed by this post, in conjunction with caching could vastly improve load times with fewer seeks.
-- Using the cache with network streams.
-- Abstract over archived files and multipart archives.
-
 ## Project Timeline
 
 This document outlines the project timeline for organizing and documenting the P4 compiler project. The project is divided into 12 weeks, with each week focusing on specific tasks and deliverables.
