@@ -1,15 +1,18 @@
 # P4 Compiler Documentation Site
 
-**Date:** 2nd April, 2024  
-**Author:** Farhan Sadeek  
-**Academic Affiliation:** Stanford University & The Ohio State University  
+**Date:** 2nd April, 2024  \
+**Author:** Farhan Sadeek  \
+**Academic Affiliation:** Stanford University & The Ohio State University\
+**Major**: Computer Science and Mathematics (Theoretical Track) \
+**Minor**: Physics and Quantitative Economics \
 **Professional Affiliation:** Spectrum *(NYSE:CHTR)*\
 **Email:** sadeek.1@osu.edu  
 **Github profile:** [SadeekFarhan21](https://github.com/SadeekFarhan21) \
+**Linkedin**: [Farhan Sadeek](https://www.linkedin.com/in/farhansadeekde110) \
 **Personal Website**: https://farhan-sadeek.netlify.app/ \
 **Project Length**: 90 hours \
-**Mentors**: Davide Scano, Bili Dong, Fabian Ruffy
-
+**Mentors**: Davide Scano, Bili Dong, Fabian Ruffy \
+**Timezone**: Eastern Day Time (UTC - 4:00)
 ## Motivation
 
 Last year, when I was in high school, I got extremely interested in working with Arduino and Raspberry Pi. Together with me and my cousin, a network engineer, built a real-radar system with the microcontroller system. And that embarks the journey of working with embedded systems.
@@ -171,3 +174,19 @@ This document outlines the project timeline for organizing and documenting the P
 - **Deliverables:**
   - Deployed and accessible documentation website.
   - Project completion report summarizing the process.
+
+## Related Pre-proposal works
+
+[Pull Request #545](https://github.com/p4lang/tutorials/commit/06426a542afc476df2f4ab54aacc4cd38cd87cf2): I updated the list of details for the tutorials in the tutorials repository
+
+## Post Google Summer of Code Plans
+I plan to harvest the experience and knowledge I will gain from GSoC and move
+forward to making regular contributions to open source projects. I am fairly new to
+the concept.
+I have been doing projects and uploading them publicly for a year now but wasn't
+aware of the big community behind many of the tools I have been using.
+I would like to show people my work and ask them to join in on the mission whilst
+also contributing to other projects to gain experience and pass it on.
+Also, I plan to help my juniors prepare for next year's GSoC, introduce them to open
+source, and help them get a head start on projects my club mates and I have
+worked on in GSoC.
